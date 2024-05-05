@@ -1,6 +1,6 @@
 # Housing Price Prediction Model
 ## Description
-The purpose of the project is to attempt to accurately predict housing prices in California using the dataset provided. Utilizing Machine Learning concepts such as a Convolutional Neural Network and  the Random Forest Regression Model, we’re able to more accurately predict future prices for housing based on a number of values provided.
+The purpose of the project is to attempt to accurately predict housing prices in California using the dataset provided by Kaggle. Some manipulation and clean-up of the data is required in order to extrapolate the best possible score for our model. Utilizing Machine Learning concepts such as a Convolutional Neural Network and the Random Forest Regression Model, we’re able to train a model that will more accurately predict future prices with Linear Regression.
 
 ## Dataset
 The dataset contains the following columns:
@@ -17,16 +17,26 @@ As it stands, if we plot the current information into histograms, we can see tha
 <img src="/images/unmodified_histogram.png">
 
 ### Ocean Proximity
-A suspected variable that could provide a great deal of value to our project would be the ocean_proximity column. However, it cannot be used as is as the variables are strings and aren’t providing numerical values. My solution is to transpose the ocean_proximity column which returns the values provided as columns with True/False values. The following columns are provided after transposing [<1H OCEAN, INLAND, ISLAND, NEAR BAY, NEAR OCEAN]
-If we then plot this information along a Latitude vs Longitude graph we can see that proximity to an ocean does indeed correlate with higher median_house_value:
+One potential variable that could provide value to our training would be the ocean_proximity column. 
+However, it cannot be used as is due to the column containing non-numerical values. As such, I've decided to transpose the ocean_proximity column. The transposed column then returns the following:
+> [<1H OCEAN, INLAND, ISLAND, NEAR BAY, NEAR OCEAN]
+
+Due to these columns providing True and False values that can be interpreted as 1 or 0. We can better determine if it makes a difference in our model.
+Plotting the data along a Latitude vs Longitude graph we can see that proximity to an ocean does indeed correlate with higher house values:
 <img src="/images/lat_long_ocean_proximity.png">
 <img src="/images/ocean_proximity_heatmap.png">
 
 ### Rooms and Population
-The columns [total_rooms, total_bedrooms, population, households], while on their own do have some impact on the housing value, aren’t nearly as accurate without further manipulation. We can use the following formula to condense  the columns into [bedroom_ratio, household_rooms]:
-train_data['bedroom_ratio'] = train_data['total_bedrooms'] / train_data['total_rooms']
-train_data['household_rooms'] = train_data['total_rooms'] / train_data['households']
-When plotted on a heatmap, we see that these new variables provide a greater correlation to median_house_value than having those values on their own.
+Within the dataset, we have the following columns 
+> [total_rooms, total_bedrooms, population, households]
+
+While on their own, the variables do have some impact on the housing value, they aren’t nearly as accurate without further manipulation. We can use the following formula to give us two new columns.
+> train_data['bedroom_ratio'] = train_data['total_bedrooms'] / train_data['total_rooms']
+
+> train_data['household_rooms'] = train_data['total_rooms'] / train_data['households']
+
+The two ratios give us values between 0-1, which can provide more detailed info to the model as to how the values correlate.
+When plotted on a heatmap, we see that these new variables provide a greater contribution to our existing data and thus would help the model predict more accurately.
 <img src="/images/bedroom_ratio_household_rooms_heatmap.png">
 
 # Training the Model
