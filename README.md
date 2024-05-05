@@ -4,12 +4,14 @@ The purpose of the project is to attempt to accurately predict housing prices in
 
 ## Dataset
 The dataset contains the following columns:
-[longitude, latitude, housing_median_age, total_rooms, total_bedrooms, population, households, median_income, median_house_value, ocean_proximity]
+>[longitude, latitude, housing_median_age, total_rooms, total_bedrooms, population, households, median_income, median_house_value, ocean_proximity].
+
 The dataset contained Null values in 207/20640 entries, as a result those entries were culled. 
 For the train_test_split, we dropped median_house_value column for the X matrix, and used the same column as our y parameter.
-X = data.drop(['median_house_value'], axis=1) #Median house value is the target variable
-y = data['median_house_value']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2) #20 percent for testing
+> X = data.drop(['median_house_value'], axis=1) #Median house value is the target variable
+> y = data['median_house_value']
+> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2) #20 percent for testing
+
 While the dataset on its own could be used as is, we will get better results if we do some data cleaning and manipulation to try to extract as much value from the information provided.
 As it stands, if we plot the current information into histograms, we can see that we’re not able to draw good predictions due to the inconsistency between all the graphs.
 <img src="/images/unmodified_histogram.png">
@@ -28,11 +30,24 @@ When plotted on a heatmap, we see that these new variables provide a greater cor
 <img src="/images/bedroom_ratio_household_rooms_heatmap.png">
 
 # Training the Model
-If we scale the model, and fit it directly into our LinearRegression function, we receive a value of 0.65.
-While it’s not terrible, it’s not a good score. Improvements can be made by using Machine Learning to give us more accurate results. Using RandomForestRegressor from sklearn, we can try to increase the score so that predictions are more accurate. 
-When generating the forest, the initial parameters provided were n_estimators = [10, 30, 100] and min_samples_split = [2,4,8]. Using a grid search function we are able to try to acquire the best estimator for our model. 
-After running it, we get the final values of n_estimators = 100 and min_samples_split = 8 for the optimal variables for our forest.
-When we then score our test dataset, we receive a value of 0.82.
+If we scale the model, and fit it directly into our *LinearRegression* function, we receive a value of 0.65.
+
+While it’s not terrible, it’s not a good score. Improvements can be made by using Machine Learning to give us more accurate results. 
+Using *RandomForestRegressor* from sklearn, we can try to increase the score and give us better predictions. 
+When generating the forest, the initial parameters provided were 
+> n_estimators = [10, 30, 100]
+
+> min_samples_split = [2,4,8]
+
+Using a grid search function we are able to try to acquire the best estimator for our model. 
+
+After running it, we get the final values of 
+> n_estimators = 100
+
+> min_samples_split = 8
+
+
+When we then score our dataset using these values as our parameters, we receive a value of 0.82.
 Meaning our model through machine learning training became approximately 20% more accurate for determining median_house_values.
 
 
