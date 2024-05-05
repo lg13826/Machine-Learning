@@ -25,6 +25,7 @@ However, it cannot be used as is due to the column containing non-numerical valu
 
 Due to these columns providing True and False values that can be interpreted as 1 or 0. We can better determine if it makes a difference in our model.
 Plotting the data along a Latitude vs Longitude graph we can see that proximity to an ocean does indeed correlate with higher house values:
+
 <img src="/images/lat_long_ocean_proximity.png">
 <img src="/images/ocean_proximity_heatmap.png">
 
