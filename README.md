@@ -16,9 +16,10 @@ For the train_test_split, we dropped median_house_value column for the X matrix,
 
 While the dataset on its own could be used as is, we will get better results if we do some data cleaning and manipulation to try to extract as much value from the information provided.
 As it stands, if we plot the current information into histograms, we can see that we’re not able to draw good predictions due to the inconsistency between all the graphs.
+
 <img src="/images/unmodified_histogram.png">
 
-### Ocean Proximity
+### _Ocean Proximity_
 One potential variable that could provide value to our training would be the ocean_proximity column. 
 However, it cannot be used as is due to the column containing non-numerical values. As such, I've decided to transpose the ocean_proximity column. The transposed column then returns the following:
 > [<1H OCEAN, INLAND, ISLAND, NEAR BAY, NEAR OCEAN]
@@ -29,7 +30,7 @@ Plotting the data along a Latitude vs Longitude graph we can see that proximity 
 <img src="/images/lat_long_ocean_proximity.png">
 <img src="/images/ocean_proximity_heatmap.png">
 
-### Rooms and Population
+### _Rooms and Population_
 Within the dataset, we have the following columns 
 > [total_rooms, total_bedrooms, population, households]
 
@@ -40,6 +41,7 @@ While on their own, the variables do have some impact on the housing value, they
 
 The two ratios give us values between 0-1, which can provide more detailed info to the model as to how the values correlate.
 When plotted on a heatmap, we see that these new variables provide a greater contribution to our existing data and thus would help the model predict more accurately.
+
 <img src="/images/bedroom_ratio_household_rooms_heatmap.png">
 
 # Training the Model
