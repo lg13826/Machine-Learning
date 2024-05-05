@@ -9,7 +9,9 @@ The dataset contains the following columns:
 The dataset contained Null values in 207/20640 entries, as a result those entries were culled. 
 For the train_test_split, we dropped median_house_value column for the X matrix, and used the same column as our y parameter.
 > X = data.drop(['median_house_value'], axis=1) #Median house value is the target variable
+
 > y = data['median_house_value']
+
 > X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2) #20 percent for testing
 
 While the dataset on its own could be used as is, we will get better results if we do some data cleaning and manipulation to try to extract as much value from the information provided.
